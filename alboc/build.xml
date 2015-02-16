@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="AlboC" default="jar">
+
+  <target name="clean" description="Fjern genererte filer">
+    <delete dir="classes"/>
+    <delete file="AlboC.jar"/>
+  </target>
+
+  <target name="compile" description="Kompiler Java-programmet">
+    <mkdir dir="classes"/>
+    <javac srcdir="." destdir="classes" includeantruntime="false"/>
+  </target>
+
+  <target name="jar" depends="compile" description="Lag en JAR-fil">
+    <jar destfile="AlboC.jar">
+      <fileset dir="classes" includes="**/*.class"/>
+      <manifest>
+	<attribute name="Main-Class" value="no.uio.ifi.alboc.alboc.AlboC"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="zip" description="Lag en ZIP-fil">
+    <zip destfile="alboc.zip" basedir="."/>
+  </target>
+</project>
